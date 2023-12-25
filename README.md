@@ -1,0 +1,2 @@
+# qc
+Practicing Quantum Computing
