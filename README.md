@@ -10,3 +10,9 @@
 
 ### IBMsinglequantumsystem.py
 - Testing state vectors, single qubit operatons.
+
+### quantumteleportation.py
+- Teleportation circuit completed successfully.
+- Add barriers, take q to be definitely measurable (e.g. 0/1 state), apply random UnitaryGate to get a random quantum state.
+- Apply the inverse of the unitaryGate on B and measure. It will be definitive. (0/1 state)
+- Complete implementation of bell states' circuit.
