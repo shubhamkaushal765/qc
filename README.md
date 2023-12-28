@@ -1,22 +1,34 @@
 # qc - Quantum Computing
 
-### hello_world.py
-- run basic circuit on local simulators. (testing both ideal and noisy)
-- qubits are by default initialized to |0>
+## quantumteleportation.py
 
-### test_statevectors.py
-- Transpilation: is the process of writing the input circuit to match the topology of specific quantum device, and/or to optimize the circuit for present day noisy qc.
-- Don't put any measurements on the circuit. Measurements will lead to a collapse of the qubits, and we won't get the state of the qubits at that poistion in the circuit.
+- `Quantum teleportation` is a protocol where a sender transmits a qubit to a receiver by making use of a shared entangled quantum state along with two bits of classical communication.
+- The entanglement is lost in the process.
 
-### IBMsinglequantumsystem.py
-- Testing state vectors, single qubit operatons.
+## Circuit
+```
+            ┌─────────────────────┐            ┌───┐ ░ ┌─┐    ░
+q3_0: ──────┤ Initialize(0.6,0.8) ├─────────■──┤ H ├─░─┤M├────░───────■─
+      ┌─────┴─────────────────────┴──────┐┌─┴─┐└───┘ ░ └╥┘┌─┐ ░       │
+q3_1: ┤0                                 ├┤ X ├──────░──╫─┤M├─░───■───┼─
+      │  Initialize(0.70711,0,0,0.70711) │└───┘      ░  ║ └╥┘ ░ ┌─┴─┐ │
+q3_2: ┤1                                 ├───────────░──╫──╫──░─┤ X ├─■─
+      └──────────────────────────────────┘           ░  ║  ║  ░ └───┘
+c0: 2/══════════════════════════════════════════════════╩══╩════════════
+                                                        0  1
+```
+## Bell States
 
-### quantumteleportation.py
-- Teleportation circuit completed successfully.
-- Add barriers, take q to be definitely measurable (e.g. 0/1 state), apply random UnitaryGate to get a random quantum state.
-- Apply the inverse of the unitaryGate on B and measure. It will be definitive. (0/1 state)
-- Complete implementation of bell states' circuit.
+$$
+|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
+$$
+$$
+|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)
+$$
+$$
+|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)
+$$
+$$
+|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)
+$$
 
-### superdense_coding.py
-- send two classical bits using one qubit (at a cost of one e-bit of entanglement)
-- `Holevo's Theorom` : Quantum Information Theory: Without the use of entanglement, it is impossible to send more than one bit of information using a single qubit.
