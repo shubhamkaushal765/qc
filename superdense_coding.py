@@ -1,6 +1,9 @@
 from qiskit import QuantumRegister, QuantumCircuit, ClassicalRegister
 from qiskit_aer import AerSimulator
 
+# SHOTS is the number of times to run the simulation
+# 1 if ideal-local simulation, big number (e.g. 1024) if noisy simulation
+SHOTS = 100
 
 def superdense_coding_protocol(c, d):
     # define qubits and circuit
@@ -32,13 +35,13 @@ def superdense_coding_protocol(c, d):
     return protocol
 
 if __name__ == "__main__":
-    c, d= 0, 1
+    c, d= 1, 1
     protocol = superdense_coding_protocol(c, d)
     print(protocol)
 
     # simulation
     simulator = AerSimulator()
-    result = simulator.run(protocol, shots=100).result()
+    result = simulator.run(protocol, shots=SHOTS).result()
 
     # get result count
     counts = result.get_counts()

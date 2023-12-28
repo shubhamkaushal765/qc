@@ -1,22 +1,37 @@
 # qc - Quantum Computing
 
-### hello_world.py
-- run basic circuit on local simulators. (testing both ideal and noisy)
-- qubits are by default initialized to |0>
+## superdense_coding.py
 
-### test_statevectors.py
-- Transpilation: is the process of writing the input circuit to match the topology of specific quantum device, and/or to optimize the circuit for present day noisy qc.
-- Don't put any measurements on the circuit. Measurements will lead to a collapse of the qubits, and we won't get the state of the qubits at that poistion in the circuit.
+- `Superdense Coding` allows for the transmission of two classical bits using one qubit of quantum communication at the cost of one e-bit of entanglement.
+- Through superdense coding, shared entanglement effectively allows for the doubling of the classical information-carrying capacity of sending qubits.
+- Holevo's Threorom
 
-### IBMsinglequantumsystem.py
-- Testing state vectors, single qubit operatons.
+## Circuit
+```
+        ┌───┐      ░ ┌───┐┌───┐ ░      ┌───┐ ░  ░ ┌─┐   
+     a: ┤ H ├──■───░─┤ Z ├┤ X ├─░───■──┤ H ├─░──░─┤M├───
+        └───┘┌─┴─┐ ░ └───┘└───┘ ░ ┌─┴─┐└───┘ ░  ░ └╥┘┌─┐
+     b: ─────┤ X ├─░────────────░─┤ X ├──────░──░──╫─┤M├
+             └───┘ ░            ░ └───┘      ░  ░  ║ └╥┘
+meas: 2/═══════════════════════════════════════════╩══╩═
+                                                   0  1 
+```
 
-### quantumteleportation.py
-- Teleportation circuit completed successfully.
-- Add barriers, take q to be definitely measurable (e.g. 0/1 state), apply random UnitaryGate to get a random quantum state.
-- Apply the inverse of the unitaryGate on B and measure. It will be definitive. (0/1 state)
-- Complete implementation of bell states' circuit.
+- Different circuits are generated based on the inputs, the above is for (c, d) = (1, 1)
+- Circuit between the first and second barrier changes based on the inputs. (The Z and X gate.)
 
-### superdense_coding.py
-- send two classical bits using one qubit (at a cost of one e-bit of entanglement)
-- `Holevo's Theorom` : Quantum Information Theory: Without the use of entanglement, it is impossible to send more than one bit of information using a single qubit.
+## Bell States
+
+$$
+|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
+$$
+$$
+|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)
+$$
+$$
+|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)
+$$
+$$
+|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)
+$$
+
