@@ -16,3 +16,7 @@
 - Add barriers, take q to be definitely measurable (e.g. 0/1 state), apply random UnitaryGate to get a random quantum state.
 - Apply the inverse of the unitaryGate on B and measure. It will be definitive. (0/1 state)
 - Complete implementation of bell states' circuit.
+
+### superdense_coding.py
+- send two classical bits using one qubit (at a cost of one e-bit of entanglement)
+- `Holevo's Theorom` : Quantum Information Theory: Without the use of entanglement, it is impossible to send more than one bit of information using a single qubit.
