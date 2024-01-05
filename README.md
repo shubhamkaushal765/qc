@@ -24,6 +24,37 @@ q2_1: ─────┤ X ├
            └───┘
 ```
 
+### Shor's Algorithm
+
+Three parts to the computation:
+- Converting the factoring problem to period finding
+- Find the period using QFT
+- Find the factors using the period.
+
+The logic:
+
+- find period x^r = 1 mod N: r is the period, N is the number to factor.
+- Let N = pq, where p, q are prime numbers
+- Period Finding
+    - pick x at random from (1, N)
+    - if gcd(x, N) != 1, then p or q must be that gcd.
+    - else x and N must be coprimes. Find r (the period).
+    - repeat for different values of x.
+- x^r = 1 mod N => x^r - 1 = 0
+- If r is even, then it can be split into two factors, which must be some mulitples of p and q.
+
+```
+# testing the classical version
+# code in shor.py
+# Output of the code
+Starting Classical Shor's algorithm...
+To Factor, N: 8633
+Base, X: 1715,
+Exponent, R: 528
+The factors are: 89, 97.
+================================================
+```
+
 ---
 
 ## Other Branches
