@@ -1,5 +1,6 @@
 # Deutsch's Algorithm
 
+> folder: oracle_algos
 
 - An oracle function is used, and we have to determine the characteristics of this function. (constant or balanced)
 
