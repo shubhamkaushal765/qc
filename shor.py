@@ -13,6 +13,9 @@ Shor'r algorithm:
 
 from utils import gcd, is_prime
 import random, math
+from qiskit import Aer
+from qiskit_algorithms import Shor
+from qiskit.utils import QuantumInstance
 
 def find_period(x, N):
     """Brute force period finding algorithm"""
@@ -82,3 +85,11 @@ if __name__ == '__main__':
 
     to_factor = inputs[0] * inputs[1]
     classical_shor(to_factor)
+
+    print("Quantum Shor's Algorithm...")
+    N = 15
+    backend = Aer.get_backend('aer_simulator')
+    quantum_instance = QuantumInstance(backend, shots=1024)
+    shor = Shor(quantum_instance=quantum_instance)
+    result = shor.factor(N)
+    print(f"The list of factors of {N} as computed by the Shor's algorithm is {result.factors[0]}.")
