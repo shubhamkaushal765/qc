@@ -2,39 +2,6 @@ import cirq
 import numpy as np
 
 
-class UnitaryGate(cirq.Gate):
-    """
-    Defines a unitary gate for quantum phase estimation.
-
-    Parameters:
-    - theta (float): Angle between 0 and 1 in radians.
-    - power (int): Power of the unitary gate
-
-    Returns:
-    cirq.MatrixGate: A unitary gate.
-
-    Notes:
-    - The gate is defined as U(theta) = |1⟩⟨1| + exp(2 * π * i * theta) |0⟩⟨0|.
-    """
-
-    def __init__(self, theta, power):
-        super(UnitaryGate, self)
-        self.theta = theta
-        self.power = power
-
-    def _num_qubits_(self):
-        return 1
-
-    def _unitary_(self):
-        gate_np = np.array([[np.exp(2 * np.pi * 1.0j * self.theta), 0], [0, 1]])
-        gate_np = np.linalg.matrix_power(gate_np, self.power)
-        gate = cirq.MatrixGate(matrix=gate_np)
-        return gate
-
-    def _circuit_diagram_info_(self, args):
-        return f"U({self.theta})({self.power})"
-
-
 def C_U_gate(circuit, angle, qubits, ancilla):
     """
     Construct a controlled unitary gate in the given circuit.
@@ -48,13 +15,26 @@ def C_U_gate(circuit, angle, qubits, ancilla):
     Returns:
     cirq.Circuit: The modified quantum circuit with the added controlled unitary gate.
     """
+    gate = cirq.MatrixGate(
+        matrix=np.array([[np.exp(2 * np.pi * 1.0j * angle), 0], [0, 1]])
+    )
     for i in range(len(qubits)):
-        gate = UnitaryGate(angle, 2**i)
-        circuit += [gate.on(ancilla).controlled_by(qubits[i])]
+        circuit += [gate.on(ancilla).controlled_by(qubits[i]) ** (2**i)]
     return circuit
 
 
 def qpe(angle=0.75, n_qubits=2, repetitions=1):
+    """
+    Perform Quantum Phase Estimation (QPE) for a given angle and number of qubits.
+
+    Parameters:
+    - angle (float): The angle for the controlled unitary gate.
+    - n_qubits (int): The number of qubits used in the QPE.
+    - repetitions (int): The number of times to repeat the QPE circuit.
+
+    Returns:
+    cirq.Result: The result of the QPE circuit.
+    """
 
     # initialize the qubits
     ancilla = cirq.LineQubit(-1)
@@ -70,7 +50,7 @@ def qpe(angle=0.75, n_qubits=2, repetitions=1):
     # measurement
     circuit.append(cirq.measure(*q, key="phase"))
 
-    print(circuit)
+    # print(circuit)
 
     # gather results
     simulator = cirq.Simulator()
@@ -78,9 +58,19 @@ def qpe(angle=0.75, n_qubits=2, repetitions=1):
     return result
 
 
-def main():
-    qpe()
-
-
 if __name__ == "__main__":
-    main()
+    repetitions = 100
+
+    for n_qubits in (2, 4, 8, 16):
+        print(f"Testing with {n_qubits} qubits.")
+        errors = []
+        
+        for angle in np.arange(0, 1, 0.1):
+            result = qpe(angle, n_qubits, repetitions=repetitions)
+            mode = result.data["phase"].mode()[0]
+            guess = mode / 2**n_qubits
+            print(f"target: {angle:0.4f}, estimiate: {guess:0.4f}={mode}/{2**n_qubits}")
+            errors.append((angle - guess) ** 2)
+            
+        rms = np.sqrt(sum(errors) / len(errors))
+        print(f"RMS Error: {rms: 0.4f}")
