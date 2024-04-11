@@ -1,0 +1,1 @@
+openqaoa    # recommended ==python3.10, `pip install openqaoa` will install the relevant stack.
