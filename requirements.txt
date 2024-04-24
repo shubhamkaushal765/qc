@@ -1,0 +1,14 @@
+cirq==1.3.0
+cvxgraphalgs==0.1.2
+cvxopt==1.3.2
+networkx==3.2.1
+notebook==7.1.2
+numpy==1.26.4
+pandas==2.2.2
+pynauty==2.8.6
+pytest==8.1.1
+scikit_learn==1.4.2
+seaborn==0.13.2
+tqdm==4.66.2
+qiskit
+dwave-ocean-sdk
