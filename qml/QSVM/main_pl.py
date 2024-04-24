@@ -93,6 +93,8 @@ class QSVM_PENNYLANE:
         self.wires = wires
         self.dev = qml.device(device, wires=self.wires)
 
+        print(f"Number of cols: {len(self.x_tr[0])}, Wires: {wires}")
+
         @qml.qnode(self.dev)
         def kernel_circuit(a, b):
             # Quantum data embedding based on the chosen encoding type
