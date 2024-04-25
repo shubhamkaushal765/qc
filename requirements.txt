@@ -12,3 +12,4 @@ seaborn==0.13.2
 tqdm==4.66.2
 qiskit
 dwave-ocean-sdk
+scikit-learn
