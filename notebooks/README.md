@@ -1,6 +1,27 @@
-# Quantum Machine Learning
+# Quantum Machine Learning <!-- omit in toc -->
+
+- [Quanvolutional Neural Networks](#quanvolutional-neural-networks)
+- [Quantum Generative Adversarial Networks](#quantum-generative-adversarial-networks)
+  - [Resources](#resources)
+- [Quantum GANs for image data generation](#quantum-gans-for-image-data-generation)
+  - [The Patch Method for QGANs](#the-patch-method-for-qgans)
+- [Quantum Fourier Transform](#quantum-fourier-transform)
+- [Quantum Teleportation](#quantum-teleportation)
+- [Superdense Coding](#superdense-coding)
+
+
+## Quanvolutional Neural Networks
+| <img src="images/quanvolutional.png" width=400> | <img src="images/quanvolutional_output.png" width=400> |
+| ----------------------------------------------- | ------------------------------------------------------ |
+
+**Quantum Neural Network (QNN)** extend the capabilities of **CNNs** by introducing a new type of transformed layer: **Quanvolutional layer**. They are made up of a group of N quantum filters (random quantum circuits), making a feature map through the transformed input data. It is hypothesized that quanvolutional features would increase the accuracy of ML models. This will be only because of two reasons:
+
+1. **Quanvolutional filter** are applied to only *local subsections* of the input data, so they can operate using a small number of quantum bits with shallow gate depths.
+2. **Quanvolutional are resilient to error**; as long as the error model in the quantum circuit is consistent, it can essentially be thought as another component of the random quantum circuit.
 
 ## Quantum Generative Adversarial Networks
+
+<center><img src="images/qgan_states_circuit.png" width=300></center>
 
 > CodeBook: Quantum GANs - states.ipynb
 
@@ -14,6 +35,8 @@ One of the challenges in applying quantum computing techniques to classical data
 
 ---
 ## Quantum GANs for image data generation
+
+<center><img src="images/qgan_patch.png" width=300></center>
 
 > CodeBook: Quantum GANs - images.ipynb
 
@@ -33,6 +56,8 @@ This implementation uses the Patch Method for Quantum Generative Adversarial Net
 ---
 ## Quantum Fourier Transform
 
+<center><img src="images/qft.png" width=300></center>
+
 > CodeBook: QuantumFourierTransform.ipynb
 
 The QFT is a quantum analog of the classical Discrete Fourier Transform (DFT), capable of efficiently computing the Fourier transform of a quantum state. The QFT can be implemented efficiently on a quantum computer using only a polynomial number of quantum gates, offering an exponential speedup over classical algorithms for certain problems. This remarkable quantum algorithm has profound implications for fields such as cryptography and the study of periodic structures in quantum systems.
@@ -40,11 +65,15 @@ The QFT is a quantum analog of the classical Discrete Fourier Transform (DFT), c
 ---
 ## Quantum Teleportation
 
+<center><img src="images/quantum_teleportation.png" width=300></center>
+
 > CodeBook: QuantumTeleportation.ipynb
 
 Quantum Teleportation allows the transfer of an unknown quantum state from one location to another, with the help of classical communication and previously shared quantum entanglement.
 
 ## Superdense Coding
+
+<center><img src="images/superdense_coding.png" width=300></center>
 
 > CodeBook: SuperdenseCoding.ipynb
 
